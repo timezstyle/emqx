@@ -1,5 +1,10 @@
 # 修改 emqx lua hook 拿不到 username 問題
 
+1. 要先安裝 erlang, rebar3 (compile 用)
+```
+make install
+```
+
 1. 先 compile 修改過的 lua hook
 ```
 make compile
