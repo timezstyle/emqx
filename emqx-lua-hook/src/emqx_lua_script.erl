@@ -287,9 +287,8 @@ on_message_publish(Message = #message{from = {ClientId, Username},
             ?LOG(error, "Topic=~p, lua function on_message_publish caught exception, ~p", [Topic, Other]),
             {ok, Message}
     end;
-on_message_publish(Message = #message{from = Internal, headers = #{username := Username}}, _ScriptName, LuaState) -> {
-    {Status, NewMsg} = on_message_publish(Message#message{from = {Internal, Username}}, _ScriptName, LuaState)
-},
+on_message_publish(Message = #message{from = Internal, headers = #{username := Username}}, _ScriptName, LuaState) ->
+    {Status, NewMsg} = on_message_publish(Message#message{from = {Internal, Username}}, _ScriptName, LuaState),
     {Status, NewMsg#message{from = Internal}}.
 
 on_message_delivered(#{}, #message{topic = <<$$, _Rest/binary>>}, _ScriptName, _LuaState) ->
